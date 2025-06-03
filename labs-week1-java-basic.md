@@ -144,6 +144,92 @@ public class VariablePractice {
 - 자동 형 변환은 자연스럽지만 강제 형 변환(double → int)에서는 소수점이 잘리는 **데이터 손실**이 일어난다는 점이 인상 깊었다.
 - `String`은 참조형이라 메모리 구조가 다르다는 개념이 처음엔 어색했지만, 코드를 통해 간접적으로 느껴볼 수 있었다.
 
+---
+
+## 📘 1. 개념 정리
+
+- 연산자는 변수나 값에 계산, 비교, 논리 판단 등을 수행하는 기호다.
+- 자바 연산자는 크게 5가지 종류가 있다:
+  - 산술 연산자: `+`, `-`, `*`, `/`, `%`
+  - 비교 연산자: `==`, `!=`, `>`, `<`, `>=`, `<=`
+  - 논리 연산자: `&&`, `||`, `!`
+  - 대입 연산자: `=`, `+=`, `-=`, `*=`, `/=`
+  - 단항 연산자: `++`, `--`, `!`, `+`, `-`
+- 연산자 우선순위가 명확하지 않을 땐 괄호로 묶어서 처리한다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// OperatorPractice.java
+
+public class OperatorPractice {
+    public static void main(String[] args) {
+
+        // 1. 산술 연산자
+        int a = 10, b = 3;
+        System.out.println("[산술 연산자]");
+        System.out.println("a + b = " + (a + b));
+        System.out.println("a - b = " + (a - b));
+        System.out.println("a * b = " + (a * b));
+        System.out.println("a / b = " + (a / b));
+        System.out.println("a % b = " + (a % b));
+
+        // 2. 비교 연산자
+        System.out.println("\n[비교 연산자]");
+        System.out.println("a > b: " + (a > b));
+        System.out.println("a == b: " + (a == b));
+        System.out.println("a != b: " + (a != b));
+
+        // 3. 논리 연산자
+        boolean x = true, y = false;
+        System.out.println("\n[논리 연산자]");
+        System.out.println("x && y: " + (x && y));
+        System.out.println("x || y: " + (x || y));
+        System.out.println("!x: " + (!x));
+
+        // 4. 대입 연산자
+        int c = 5;
+        System.out.println("\n[대입 연산자]");
+        c += 3;
+        System.out.println("c += 3 → " + c);
+        c *= 2;
+        System.out.println("c *= 2 → " + c);
+
+        // 5. 단항 연산자
+        int i = 1;
+        System.out.println("\n[단항 연산자]");
+        System.out.println("++i: " + (++i));
+        System.out.println("i++: " + (i++));
+        System.out.println("i: " + i);
+    }
+}
+```
+
+## 🖼️ 3. 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day48-operators-output.png" width="450"/><br/>
+  > 산술, 비교, 논리, 대입, 단항 연산자 각각의 출력 결과를 한 화면에 확인한 모습
+</p>
+
+---
+
+## 🛠️ 4. Troubleshooting & 기록
+
+- `System.out.println("\n[구분]");` 코드를 활용해 출력 섹션을 시각적으로 나누는 것이 매우 효과적이었다.
+- `int / int` 나눗셈 결과는 소수점 없이 **몫만 출력**되기 때문에, 실수 나눗셈이 필요한 경우에는 `double` 또는 `(double)` 형 변환이 필요함.
+- `i++`, `++i` 등 단항 연산자의 **출력 시점 차이**를 콘솔로 확인하며 개념이 더 명확해졌다.
+- 논리 연산자에서 `&&`와 `||`의 차이(AND vs OR)를 실제 출력값으로 확실히 이해함.
+
+---
+
+## 💭 5. 느낀 점
+
+- 연산자는 단순한 계산 이상의 역할을 하며, 조건문이나 반복문을 설계할 때 필수적으로 사용된다.
+- 특히 비교, 논리 연산자는 실무에서도 매우 자주 쓰이므로 `boolean` 결과를 직접 출력해보며 익히는 것이 큰 도움이 되었다.
+- 앞으로는 연산자 사용 시 **우선순위와 자료형의 영향**도 항상 염두에 두어야겠다는 것을 실감했다.
 
 
 
