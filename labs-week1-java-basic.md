@@ -4,6 +4,8 @@
 
 ---
 
+# ✅ Day 01 – Java 시작하기: HelloWorld 실행
+
 ## 📘 1. 개념 정리
 
 - Java는 객체 지향 언어이며 플랫폼 독립성을 갖는다.
@@ -54,6 +56,8 @@ public class HelloWorld {
 - 앞으로 실습을 진행할 때 **스크립트-출력 결과-스크린샷** 흐름을 더 명확히 유지해야겠다고 다짐했다.
 
 ---
+
+# ✅ Day 02 – Java변수와 자료형 기초 다지기
 
 ## 📘 1. 개념 정리
 
@@ -146,6 +150,8 @@ public class VariablePractice {
 
 ---
 
+# ✅ Day 03 – Java연산자 - 산술, 비교, 논리, 대입, 단항 연산자 실습
+
 ## 📘 1. 개념 정리
 
 - 연산자는 변수나 값에 계산, 비교, 논리 판단 등을 수행하는 기호다.
@@ -230,6 +236,94 @@ public class OperatorPractice {
 - 연산자는 단순한 계산 이상의 역할을 하며, 조건문이나 반복문을 설계할 때 필수적으로 사용된다.
 - 특히 비교, 논리 연산자는 실무에서도 매우 자주 쓰이므로 `boolean` 결과를 직접 출력해보며 익히는 것이 큰 도움이 되었다.
 - 앞으로는 연산자 사용 시 **우선순위와 자료형의 영향**도 항상 염두에 두어야겠다는 것을 실감했다.
+
+---
+
+# ✅ Day 04 – Java 조건문 – if, else if, else, 중첩 조건문
+
+## 📘 1. 개념 정리
+
+- 조건문은 주어진 조건에 따라 코드 실행 흐름을 분기시키는 구조다.
+- 기본 형태는 `if`, `else if`, `else`이며, 위에서 아래로 순차적으로 조건을 평가한다.
+- 중첩 조건문은 조건문 내부에 또 다른 조건문을 작성하는 방식으로, 복잡한 분기 구조에 사용된다.
+- 조건식은 반드시 boolean 타입이어야 하며, 자바에서는 `if (x)` 같은 단축 조건을 사용할 수 없다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// ConditionPractice.java
+
+public class ConditionPractice {
+    public static void main(String[] args) {
+
+        // 1. 나이에 따른 분류
+        int age = 15;
+        System.out.println("[나이 분류]");
+        if (age >= 20) {
+            System.out.println("성인입니다.");
+        } else if (age >= 13) {
+            System.out.println("청소년입니다.");
+        } else {
+            System.out.println("어린이입니다.");
+        }
+
+        // 2. 시험 점수 등급
+        int score = 92;
+        System.out.println("\n[시험 점수 평가]");
+        if (score >= 90) {
+            System.out.println("A등급");
+        } else if (score >= 80) {
+            System.out.println("B등급");
+        } else if (score >= 70) {
+            System.out.println("C등급");
+        } else {
+            System.out.println("불합격");
+        }
+
+        // 3. 로그인 상태 중첩 조건문
+        boolean isLoggedIn = true;
+        String username = "Heesung";
+
+        System.out.println("\n[로그인 상태 확인]");
+        if (isLoggedIn) {
+            if (username.equals("Heesung")) {
+                System.out.println("환영합니다, Heesung님!");
+            } else {
+                System.out.println("사용자 이름이 다릅니다.");
+            }
+        } else {
+            System.out.println("로그인이 필요합니다.");
+        }
+    }
+}
+```
+
+---
+
+## 🖼️ 3. 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day49-condition-output.png" width="450" /><br/>
+  > 나이 분류, 점수 평가, 로그인 상태 확인을 조건문으로 출력한 전체 결과 화면
+</p>
+
+---
+
+## 🛠️ 4. Troubleshooting & 기록
+
+- `else if` 없이 `if`만 여러 개 쓰면, **여러 조건이 동시에 실행**되어 예상과 다른 결과가 나올 수 있음 → 분기문은 순서를 갖는 구조여야 함
+- `==`를 문자열 비교에 쓰면 `false`가 나올 수 있음 → 문자열 비교는 반드시 `.equals()` 사용
+- 조건식이 boolean이 아닌 경우 (`if (x)` 같은 표현)에는 **컴파일 오류** 발생 → 항상 명시적인 조건식 필요
+
+---
+
+## 💭 느낀 점
+
+- 자바의 조건문은 단순한 판단이 아니라 **로직의 방향을 결정하는 핵심 도구**라는 걸 다시금 느꼈다.
+- 특히 중첩 조건문의 흐름과 순서에 따라 결과가 완전히 달라지므로, **코드를 읽는 순서에 민감해져야 한다**.
+- 조건이 많아질수록 switch문이나 메서드 분리를 고려해야겠다는 감각이 생겼다.
 
 
 
