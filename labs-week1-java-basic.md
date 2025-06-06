@@ -325,5 +325,106 @@ public class ConditionPractice {
 - 특히 중첩 조건문의 흐름과 순서에 따라 결과가 완전히 달라지므로, **코드를 읽는 순서에 민감해져야 한다**.
 - 조건이 많아질수록 switch문이나 메서드 분리를 고려해야겠다는 감각이 생겼다.
 
+---
+
+# ✅ Day 05 – Java 조건문 심화 - 논리 연산자, 중첩 조건 개선, return 흐름 제어
+
+## 📘 1. 개념 정리
+
+- 논리 연산자는 조건을 복합적으로 판단할 때 사용하는 연산자이다.
+- 주요 논리 연산자:
+  - `&&` (AND): 모든 조건이 true일 때 전체 조건이 true
+  - `||` (OR): 하나라도 true면 전체 조건이 true
+  - `!` (NOT): true → false, false → true로 반전
+- 중첩된 if문은 `&&`나 `||`로 결합하여 가독성 좋게 리팩토링할 수 있다.
+- `return`은 조건을 만족할 때 메서드 흐름을 조기 종료할 수 있게 한다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// LogicAnd.java
+int score = 85;
+if (score >= 60 && score <= 100) {
+    System.out.println("합격입니다.");
+} else {
+    System.out.println("불합격입니다.");
+}
+
+// LogicOr.java
+int temperature = -5;
+if (temperature < 0 || temperature > 35) {
+    System.out.println("야외활동 위험");
+} else {
+    System.out.println("활동 가능");
+}
+
+// LogicNot.java
+boolean isLoggedIn = false;
+if (!isLoggedIn) {
+    System.out.println("로그인이 필요합니다.");
+}
+
+// NestedIfRefactor.java
+int x = 7;
+if (x > 0 && x < 10) {
+    System.out.println("x는 1 이상 9 이하입니다.");
+}
+
+// ReturnInIf.java
+int age = -1;
+if (age < 0) {
+    System.out.println("잘못된 나이입니다.");
+    return;
+}
+System.out.println("나이는 " + age + "세입니다.");
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day50-logic-and.png" width="450" /><br/>
+  > score가 85일 때 "합격입니다."가 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day50-logic-or.png" width="450" /><br/>
+  > 온도가 -5일 때 "야외활동 위험"이 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day50-logic-not.png" width="450" /><br/>
+  > 로그인 상태가 false일 때 "로그인이 필요합니다."가 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day50-nested-refactor.png" width="450" /><br/>
+  > x가 7일 때 중첩 if 대신 "x는 1 이상 9 이하입니다."가 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day50-return-early-exit.png" width="450" /><br/>
+  > age가 -1일 때 "잘못된 나이입니다."만 출력되고 이후 코드가 실행되지 않음
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 조건식에서 `if (x && y)` 형태는 사용 불가 → 반드시 boolean 결과를 반환하는 비교식 필요
+- 복합 조건식에서 괄호를 생략하면 **우선순위 문제**로 예상과 다른 결과 발생 가능
+- 중첩된 if문을 `&&`나 `||`로 정리할 경우 코드 흐름이 훨씬 간결해짐
+- `return`은 void 메서드에서도 사용 가능하며, 흐름 제어용으로 활용 가능
+
+---
+
+## 💭 느낀 점
+
+- 단순한 if-else 구조에서 벗어나 논리 연산자 기반의 분기 구조를 익히며 사고가 더 정교해졌다.
+- `&&`, `||`, `!` 각각의 성질을 명확히 이해한 후 실습에 적용해보니 혼합 조건을 자신 있게 구성할 수 있었다.
+- return을 조건 안에 써서 흐름을 차단하는 방식은 실무에서도 매우 효율적으로 활용될 수 있겠다는 감각을 얻었다.
 
 
