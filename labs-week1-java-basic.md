@@ -515,5 +515,102 @@ public class StringBasic {
 - 숫자와 문자열을 같이 다룰 때 자동 형변환이 일어난다는 점이 흥미로웠고, 잘못 쓰면 결과가 달라질 수도 있어 주의가 필요하다고 느꼈다.
 - `String`이 단순한 텍스트 저장 그 이상으로, 메서드를 통해 다양한 조작이 가능하다는 점에서 객체형 자료형의 특징을 다시 확인할 수 있었다.
 
+---
 
+# ✅ Day 07 – Java 문자열 비교와 메서드 활용
 
+## 📘 1. 개념 정리
+
+- 문자열 비교는 반드시 `equals()` 메서드를 사용해야 정확한 비교가 가능하다
+- `==`는 문자열 객체의 주소값을 비교하므로 값이 같아도 false가 나올 수 있음
+- `contains()`는 문자열에 특정 텍스트가 포함되어 있는지 확인
+- `startsWith()` / `endsWith()`는 특정 문자열로 시작/끝나는지 판단
+- `substring(start, end)`은 부분 문자열을 추출할 때 사용 (end는 포함하지 않음)
+- `isEmpty()`는 문자열이 비어 있는지를 boolean 값으로 반환
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// StringCompare.java
+
+public class StringCompare {
+    public static void main(String[] args) {
+
+        // 문자열 비교 (== vs equals)
+        String str1 = new String("hello");
+        String str2 = new String("hello");
+
+        System.out.println("== result: " + (str1 == str2));
+        System.out.println("equals() result: " + str1.equals(str2));
+
+        // contains
+        String sentence = "Java programming is fun";
+        System.out.println("Contains 'program': " + sentence.contains("program"));
+
+        // startsWith, endsWith
+        String word = "Heesung";
+        System.out.println("Starts with 'Hee': " + word.startsWith("Hee"));
+        System.out.println("Ends with 'ung': " + word.endsWith("ong"));
+
+        // substring
+        String code = "HelloJava";
+        String part1 = code.substring(0, 5); // "Hello"
+        String part2 = code.substring(5);    // "Java"
+        System.out.println("First part: " + part1);
+        System.out.println("Second part: " + part2);
+
+        // isEmpty
+        String emptyStr = "";
+        String nonEmptyStr = "data";
+        System.out.println("Is emptyStr empty? " + emptyStr.isEmpty());
+        System.out.println("Is nonEmptyStr empty? " + nonEmptyStr.isEmpty());
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day52-equals-compare.png" width="450" /><br/>
+  > 주소값 비교(false)와 equals 비교(true) 결과 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day52-contains.png" width="450" /><br/>
+  > "program"이 포함되어 있음 → true 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day52-starts-ends.png" width="450" /><br/>
+  > Heesung이 "Hee"로 시작, "ung"으로 끝남 → true 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day52-substring.png" width="450" /><br/>
+  > 부분 문자열 "Hello", "Java"를 추출해서 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day52-isempty.png" width="450" /><br/>
+  > 빈 문자열 여부 확인 → true / false 출력
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 문자열 비교 시 `==`를 사용하면 false가 나올 수 있음 → 반드시 `.equals()` 사용
+- `substring(0, 5)`에서 end 인덱스는 **포함되지 않음**을 주의해야 함
+- 빈 문자열 확인 시 `isEmpty()`는 `.length() == 0`과 같은 의미이지만 더 직관적임
+
+---
+
+## 💭 느낀 점
+
+- 문자열 비교 시 `==`를 습관적으로 쓸 경우 논리 오류가 발생할 수 있다는 점을 실습을 통해 체감했다.
+- `contains`, `startsWith`, `endsWith`는 실제 사용자 입력 처리나 검색 기능에서 매우 유용하게 쓰일 수 있을 것 같다.
+- `substring()`을 쓸 때 자바의 인덱스 규칙(0부터 시작, end는 제외)에 주의해야 한다는 것을 다시 한 번 상기하게 되었다.
