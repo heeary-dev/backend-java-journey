@@ -427,4 +427,93 @@ System.out.println("나이는 " + age + "세입니다.");
 - `&&`, `||`, `!` 각각의 성질을 명확히 이해한 후 실습에 적용해보니 혼합 조건을 자신 있게 구성할 수 있었다.
 - return을 조건 안에 써서 흐름을 차단하는 방식은 실무에서도 매우 효율적으로 활용될 수 있겠다는 감각을 얻었다.
 
+---
+
+# ✅ Day 06 – Java 문자열(String)
+
+## 📘 1. 개념 정리
+
+- 문자열(String)은 문자의 집합으로, 쌍따옴표 `" "`로 감싼 텍스트 데이터를 의미한다.
+- `String`은 참조형 자료형이며, 메서드(`length()`, `toUpperCase()` 등)를 사용할 수 있다.
+- 문자열 선언은 `String 변수명 = "문자열";` 형태로 한다.
+- `+` 연산자를 이용하여 문자열과 문자열, 문자열과 숫자를 연결할 수 있다.
+- 숫자와 문자열을 연결하면 숫자가 자동으로 문자열로 변환되어 결합된다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// StringBasic.java
+
+public class StringBasic {
+    public static void main(String[] args) {
+
+        // 문자열 변수 선언
+        String name = "Heesung";
+        String greeting = "Hello";
+
+        // 문자열 연결
+        String message = greeting + ", " + name + "!";
+        System.out.println(message);
+
+        // 문자열 + 숫자
+        int age = 29;
+        String info = name + " is " + age + " years old.";
+        System.out.println(info);
+
+        // 문자열 메서드 활용
+        System.out.println("Length of name: " + name.length());
+        System.out.println("Uppercase name: " + name.toUpperCase());
+        System.out.println("Lowercase greeting: " + greeting.toLowerCase());
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day51-string-hello.png" width="450" /><br/>
+  > 문자열 연결을 통해 "Hello, Heesung!"가 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day51-string-age.png" width="450" /><br/>
+  > 문자열 + 숫자 연결로 "Heesung is 29 years old."가 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day51-string-length.png" width="450" /><br/>
+  > name의 글자 수를 출력: "Length of name: 7"
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day51-string-uppercase.png" width="450" /><br/>
+  > name을 대문자로 출력: "Uppercase name: HEESUNG"
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day51-string-lowercase.png" width="450" /><br/>
+  > greeting을 소문자로 출력: "Lowercase greeting: hello"
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `String`은 참조형이므로 `.`을 통해 다양한 문자열 메서드를 호출할 수 있다.
+- 숫자와 문자열을 `+`로 연결하면 자동으로 숫자가 문자열로 변환되어 붙는다.
+- `" "` 없이 문자열을 선언하려 하면 컴파일 오류 발생 → 반드시 쌍따옴표 사용해야 함
+
+---
+
+## 💭 느낀 점
+
+- 문자열 선언과 출력, 연결 방식은 자바의 기본이자 실무에서도 가장 자주 쓰이는 영역임을 실감했다.
+- 숫자와 문자열을 같이 다룰 때 자동 형변환이 일어난다는 점이 흥미로웠고, 잘못 쓰면 결과가 달라질 수도 있어 주의가 필요하다고 느꼈다.
+- `String`이 단순한 텍스트 저장 그 이상으로, 메서드를 통해 다양한 조작이 가능하다는 점에서 객체형 자료형의 특징을 다시 확인할 수 있었다.
+
+
 
