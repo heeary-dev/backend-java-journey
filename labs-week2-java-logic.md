@@ -156,3 +156,83 @@ public class InputPractice {
 - `Scanner`와 `System.out`의 구조를 명확히 이해하고 나니, 입력-출력 흐름이 눈에 보이기 시작했다.
 - 간단한 조건문으로도 로직을 설계할 수 있다는 점에서 자바의 실용적인 문법 구조가 인상적이었다.
 - 내 이름을 입력하고 직접 결과가 출력되는 경험이 동기부여가 되었고, 앞으로 조건문과 반복문을 연결해 더 복잡한 로직을 구성하고 싶어졌다.
+
+---
+
+# ✅ Day 10 – Java조건문 심화실습 (scanner)
+
+## 📘 1. 개념 정리
+
+- 조건문은 위에서부터 아래로 순차적으로 실행되며, 한 번이라도 조건을 만족하면 그 아래 조건은 무시된다.
+- `if → else if → else` 구조를 통해 여러 분기 처리가 가능하다.
+- 숫자 비교는 `>=`, `==` 등으로 가능하며, 점수 등급 분기 로직에서 자주 사용된다.
+- `Scanner`를 통해 사용자 입력을 받고, 그 값에 따라 조건문을 통해 결과를 분기한다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+import java.util.Scanner;
+
+public class ScoreGrader {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("점수를 입력하세요: ");
+        int score = sc.nextInt();
+
+        if (score >= 90) {
+            System.out.println("등급: A");
+        } else if (score >= 80) {
+            System.out.println("등급: B");
+        } else if (score >= 70) {
+            System.out.println("등급: C");
+        } else {
+            System.out.println("등급: D");
+        }
+
+        sc.close();
+    }
+}
+```
+
+---
+
+## 🖼️ 3. 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day55-grade-a.png" width="500" /><br/>
+  > 95점 입력 시 A등급 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day55-grade-b.png" width="500" /><br/>
+  > 85점 입력 시 B등급 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day55-grade-c.png" width="500" /><br/>
+  > 75점 입력 시 C등급 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day55-grade-d.png" width="500" /><br/>
+  > 60점 입력 시 D등급 출력
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 조건문 순서를 잘못 배치하면 등급이 잘못 출력될 수 있음 → `score >= 90 → 80 → 70` 순서로 정렬해야 정확하게 분기됨
+- `else if`를 사용하지 않고 `if`만 여러 개 쓰면 중복 실행 가능성 있음 → `else if`는 반드시 연결해서 단일 실행 구조로 구성해야 함
+- `Scanner` 사용 후 반드시 `sc.close()`로 리소스 정리하는 습관 들이기
+
+---
+
+## 💭 느낀 점
+
+- if문이 단순한 조건 판별을 넘어서 프로그램의 흐름을 나누는 핵심이라는 걸 체감했다.
+- 조건 순서를 설계하는 데 있어서 "우선순위" 개념이 명확히 작동한다는 점이 인상 깊었고, 점수 등급처럼 실무적인 조건 로직에도 직접 적용할 수 있을 것 같았다.
+- 아직은 짧은 코드지만, 조건 분기를 통해 사용자에게 맞춤형 출력을 해준다는 점에서 실제 프로그램을 만드는 느낌이 들었다.
