@@ -88,3 +88,71 @@ public class StringConditionPractice {
   조건문 안에서 문자열 메서드를 바로 사용하는 구조가 자연스러워졌다.  
 - 입력 없이 하드코딩 방식으로 구성해도 로직 흐름은 충분히 연습 가능하다는 걸 느꼈다.
 
+---
+
+# ✅ Day 09 – Java입력과 출력의 기본 구조
+
+## 📘 1. 개념 정리
+
+- `System.out.println()` : 콘솔에 출력하는 메서드 (`PrintStream` 객체의 메서드)
+- `Scanner` : 표준 입력(키보드)을 받기 위한 도구 (`java.util` 패키지에서 제공)
+- `nextLine()` : 사용자로부터 한 줄 전체를 입력받음 (공백 포함)
+- `equals()` : 문자열 비교를 위한 메서드 (`==` 대신 사용해야 정확함)
+- `if-else` : 조건 분기문, 특정 조건이 참일 때만 특정 코드 실행
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+import java.util.Scanner;
+
+public class InputPractice {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("이름을 입력하세요: ");
+        String name = sc.nextLine();
+
+        System.out.println("안녕하세요, " + name + "님!");
+
+        if (name.equals("admin")) {
+            System.out.println("관리자 계정으로 로그인하셨습니다.");
+        } else {
+            System.out.println("일반 사용자로 로그인하셨습니다.");
+        }
+
+        sc.close();
+    }
+}
+```
+
+---
+
+## 🖼️ 3. 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day54-admin-login.png" width="500" /><br/>
+  > admin 입력 시, 관리자 안내 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day54-user-login.png" width="500" /><br/>
+  > 일반 사용자 이름 입력 시, 일반 사용자 안내 출력
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `nextLine()`은 공백 포함 문자열 전체를 받을 수 있어서 `"홍 길동"` 같은 이름도 처리 가능함
+- 문자열 비교는 반드시 `==`가 아닌 `equals()`를 써야 정확한 비교가 됨
+- `sc.close()`는 메모리 누수 방지를 위한 자바 습관으로, 아직은 크게 티는 안 나지만 항상 포함할 것
+
+---
+
+## 💭 느낀 점
+
+- `Scanner`와 `System.out`의 구조를 명확히 이해하고 나니, 입력-출력 흐름이 눈에 보이기 시작했다.
+- 간단한 조건문으로도 로직을 설계할 수 있다는 점에서 자바의 실용적인 문법 구조가 인상적이었다.
+- 내 이름을 입력하고 직접 결과가 출력되는 경험이 동기부여가 되었고, 앞으로 조건문과 반복문을 연결해 더 복잡한 로직을 구성하고 싶어졌다.
