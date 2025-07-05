@@ -320,3 +320,84 @@ public class GradeChecker {
 - `switch` 문이 `if-else`보다 훨씬 **깔끔하게 조건을 나눌 수 있다는 점**이 인상 깊었다.
 - 조건이 단순하고 **정해진 값들만 비교할 때는** `switch`가 가독성, 유지보수 면에서 유리하다는 걸 깨달았다.
 - 특히 `break`의 역할을 제대로 인식하고 나니 코드 흐름을 훨씬 명확하게 제어할 수 있었다.
+
+---
+
+# ✅ Day 12 – Java 문자열 심화 (String 메서드 완전정복)
+
+## 📘 1. 개념 정리
+
+- `String`은 참조형 자료형이며 `.equals()`를 통해 값 비교를 수행함
+- `.length()`는 문자열 길이를 반환하며, 반환값은 `int`
+- `.charAt(index)`는 해당 위치의 **문자 하나 (char)** 를 반환
+- `.substring(start, end)`는 특정 구간의 부분 문자열을 잘라 `String` 타입으로 반환
+- 사용자 입력을 받아 조건 분기와 문자열 처리를 종합적으로 수행함
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+import java.util.Scanner;
+
+public class NameAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in); // 사용자 입력을 위한 Scanner 객체 생성
+
+        System.out.print("이름을 입력하세요: ");
+        String name = sc.nextLine(); // 문자열 입력 받기
+
+        if (name.equals("희성")) { // 문자열 내용 비교
+            System.out.println("반가워요, 희성님!");
+        } else {
+            System.out.println("이름 길이: " + name.length()); // 문자열 길이
+            System.out.println("첫 글자: " + name.charAt(0)); // 첫 번째 문자
+            System.out.println("마지막 글자: " + name.charAt(name.length() - 1)); // 마지막 문자
+
+            // 이름이 3글자 이상일 경우에만 중간 글자 출력
+            if (name.length() >= 3) {
+                System.out.println("중간 글자: " + name.substring(1, name.length() - 1)); // 부분 문자열
+            } else {
+                System.out.println("중간 글자는 없습니다.");
+            }
+        }
+
+        sc.close(); // Scanner 객체 닫기
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day57-name-match.png" width="500" /><br/>
+  > "희성" 입력 시 인사 메시지가 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day57-name-details.png" width="500" /><br/>
+  > 일반 이름 입력 시 길이, 첫/마지막 글자, 중간 문자열이 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day57-name-short.png" width="500"/><br/>
+  > 이름이 2글자 이하일 경우, 중간 글자가 없다는 메시지가 출력됨
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `.substring(start, end)`는 **end 인덱스를 포함하지 않는다**는 점 주의  
+- `name.length() - 1`은 **마지막 인덱스**를 의미하며, 항상 0부터 시작하는 인덱스 기준으로 계산해야 한다  
+- `.charAt()`은 문자(`char`)를 반환하지만 `.substring()`은 문자열(`String`)을 반환한다는 점을 헷갈리지 말 것
+
+---
+
+## 💭 느낀 점
+
+- 문자열을 직접 다뤄보니 이제 단순히 출력하는 것이 아니라, 문자열을 "구성 요소"로 나누어 처리할 수 있게 되었다  
+- `length()`, `charAt()`, `substring()`은 앞으로 반복문이나 조건문과 함께 자주 쓰일 핵심 도구라는 걸 실감했다  
+- 특히 인덱스를 다룰 때는 항상 **0부터 시작한다는 점과 마지막 인덱스를 정확히 계산**하는 것이 중요함을 다시 한번 체감했다
