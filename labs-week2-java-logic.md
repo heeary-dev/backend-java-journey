@@ -236,3 +236,87 @@ public class ScoreGrader {
 - if문이 단순한 조건 판별을 넘어서 프로그램의 흐름을 나누는 핵심이라는 걸 체감했다.
 - 조건 순서를 설계하는 데 있어서 "우선순위" 개념이 명확히 작동한다는 점이 인상 깊었고, 점수 등급처럼 실무적인 조건 로직에도 직접 적용할 수 있을 것 같았다.
 - 아직은 짧은 코드지만, 조건 분기를 통해 사용자에게 맞춤형 출력을 해준다는 점에서 실제 프로그램을 만드는 느낌이 들었다.
+
+---
+
+# ✅ Day 11 – Java switch-case 문 기본 구조 학습
+
+## 📘 1. 개념 정리
+
+- `switch` 문은 하나의 값을 기준으로 여러 `case` 중 하나를 실행하는 조건 분기 구조이다.
+- `case`는 해당 값이 일치할 때 실행되고, `break`로 종료되지 않으면 아래 case까지 연쇄적으로 실행된다 (fall-through).
+- `default`는 어느 case에도 해당하지 않는 경우 실행된다.
+- `Scanner`를 통해 사용자에게 학년을 입력받아, 각 학년에 맞는 안내 메시지를 출력하는 프로그램을 작성하였다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+import java.util.Scanner;
+
+public class GradeChecker {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("당신의 학년을 입력하세요 (1~3): ");
+        int grade = sc.nextInt();
+
+        switch (grade) {
+            case 1:
+                System.out.println("1학년입니다.");
+                break;
+            case 2:
+                System.out.println("2학년입니다.");
+                break;
+            case 3:
+                System.out.println("3학년입니다.");
+                break;
+            default:
+                System.out.println("알 수 없는 학년입니다.");
+        }
+
+        sc.close();
+    }
+}
+```
+
+---
+
+## 🖼️ 3. 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day56-grade-1.png" width="500" /><br/>
+  > 1 입력 시 "1학년입니다." 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day56-grade-2.png" width="500" /><br/>
+  > 2 입력 시 "2학년입니다." 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day56-grade-3.png" width="500" /><br/>
+  > 3 입력 시 "3학년입니다." 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day56-grade-unknown.png" width="500" /><br/>
+  > 5 입력 시 "알 수 없는 학년입니다." 출력
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `break`를 빠뜨리면 다음 case까지 연쇄적으로 실행됨 (fall-through 현상 발생)
+- `default`는 필수가 아니지만, 사용자 입력값이 예상 범위를 벗어날 수 있으므로 반드시 작성하는 것이 좋음
+- `switch`는 `int`, `char`, `String`, `enum` 등에만 사용 가능하며, `boolean`, `double`은 사용할 수 없음
+
+---
+
+## 💭 느낀 점
+
+- `switch` 문이 `if-else`보다 훨씬 **깔끔하게 조건을 나눌 수 있다는 점**이 인상 깊었다.
+- 조건이 단순하고 **정해진 값들만 비교할 때는** `switch`가 가독성, 유지보수 면에서 유리하다는 걸 깨달았다.
+- 특히 `break`의 역할을 제대로 인식하고 나니 코드 흐름을 훨씬 명확하게 제어할 수 있었다.
