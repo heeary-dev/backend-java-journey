@@ -252,7 +252,7 @@ public class ScoreGrader {
 
 ## 🧪 2. 실습 명령어
 
-```java
+```
 import java.util.Scanner;
 
 public class GradeChecker {
@@ -401,3 +401,73 @@ public class NameAnalyzer {
 - 문자열을 직접 다뤄보니 이제 단순히 출력하는 것이 아니라, 문자열을 "구성 요소"로 나누어 처리할 수 있게 되었다  
 - `length()`, `charAt()`, `substring()`은 앞으로 반복문이나 조건문과 함께 자주 쓰일 핵심 도구라는 걸 실감했다  
 - 특히 인덱스를 다룰 때는 항상 **0부터 시작한다는 점과 마지막 인덱스를 정확히 계산**하는 것이 중요함을 다시 한번 체감했다
+
+---
+
+# ✅ Day 13 – Java while 반복문
+
+## 📘 1. 개념 정리
+- `while (조건)`은 조건이 참인 동안 계속 반복 실행되는 반복문
+- 반복문은 반드시 3요소(초기화, 조건식, 증감 또는 조건 변화)를 포함해야 함
+- `while (true)`는 무한 루프를 만들며, 명시적으로 `break` 등으로 탈출해야 함
+- 사용자 입력을 기반으로 반복하거나 종료 조건을 설정할 수 있음
+- 문자열 비교에는 `.equals()` 사용
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// 실습 1: 1부터 5까지 출력
+int i = 1;
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}
+
+// 실습 2: 사용자 입력 반복 받기
+Scanner sc = new Scanner(System.in);
+String input = "";
+while (!input.equals("exit")) {
+    System.out.print("입력 (종료하려면 exit): ");
+    input = sc.nextLine();
+}
+System.out.println("프로그램을 종료합니다.");
+sc.close();
+
+// 실습 3: 무한 루프 예시
+while (true) {
+    System.out.println("무한 반복 중...");
+}
+```
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day58-count-to-five.png" width="500" /><br/>
+  > 1부터 5까지 출력 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day58-repeat-input.png" width="500" /><br/>
+  > 사용자 입력 반복 → exit 입력 시 종료
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day58-infinite-loop.png" width="500" /><br/>
+  > 무한 루프 예시 – "무한 반복 중..." 반복 출력
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+- `while (true)`는 조건이 바뀌지 않으면 끝나지 않음 → 실습 중 직접 종료 버튼으로 강제 종료해야 함
+- 문자열 비교 시 `==` 대신 `.equals()`를 사용하지 않으면 조건이 작동하지 않음
+- 조건 변화 코드(`i++` 등)를 빠뜨리면 무한 루프 발생
+
+---
+
+## 💭 느낀 점
+- 반복문은 조건만 설정하면 자동으로 루프가 도는 줄 알았는데, **초기화와 조건 변화 모두 직접 설계해야 한다는 점**이 인상 깊었다
+- 무한 루프를 의도적으로 구현해보고 실제로 멈추지 않는 걸 경험하니, **조건 설계의 중요성**을 체감했다
+- 사용자 입력 반복 실습이 실전 프로그래밍과 가장 가까운 느낌이어서 흥미로웠고, 앞으로 조건문과 반복문의 조합이 점점 더 익숙해질 것 같다는 자신감이 생겼다
