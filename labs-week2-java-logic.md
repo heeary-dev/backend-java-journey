@@ -471,3 +471,74 @@ while (true) {
 - 반복문은 조건만 설정하면 자동으로 루프가 도는 줄 알았는데, **초기화와 조건 변화 모두 직접 설계해야 한다는 점**이 인상 깊었다
 - 무한 루프를 의도적으로 구현해보고 실제로 멈추지 않는 걸 경험하니, **조건 설계의 중요성**을 체감했다
 - 사용자 입력 반복 실습이 실전 프로그래밍과 가장 가까운 느낌이어서 흥미로웠고, 앞으로 조건문과 반복문의 조합이 점점 더 익숙해질 것 같다는 자신감이 생겼다
+
+---
+
+# ✅ Day 14 – Java do-while, break, continue
+
+## 📘 1. 개념 정리
+- `do-while` 반복문은 **본문을 먼저 실행한 후 조건을 확인**함 → 조건이 false여도 최소 1회 실행됨
+- `break`는 반복문 실행 도중 즉시 탈출하는 제어문 → 조건문과 함께 자주 사용됨
+- `continue`는 해당 반복만 건너뛰고 다음 반복으로 이동함 → 루프 자체는 유지됨
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// 실습 1: do-while 구조 이해
+int i = 10;
+do {
+    System.out.println("do-while: " + i);
+} while (i < 5);
+
+// 실습 2: break로 반복 중단
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) break;
+    System.out.println("i: " + i);
+}
+
+// 실습 3: continue로 회차 건너뛰기
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) continue;
+    System.out.println("i: " + i);
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day59-do-while.png" width="500" height="80"/><br/>
+  > 조건이 false여도 do-while 본문이 한 번 실행됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day59-break-example.png" width="500" height="80"/><br/>
+  > i == 3에서 break 발생 → i: 1, i: 2만 출력되고 반복 종료
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day59-continue-example.png" width="500" height="80"/><br/>
+  > i == 3일 때 continue → i: 3만 생략되고 반복 계속됨
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `do-while` 문 끝에 `;`를 붙이지 않아 컴파일 에러 발생 → `while (조건);` 구조 유지해야 함  
+- `break`는 여러 반복문이 중첩될 경우 가장 안쪽 루프만 종료함 → 정확한 위치 확인 필요  
+- `continue`는 아래 코드가 무시되고 바로 다음 회차로 넘어감 → 이후 코드가 실행되지 않음  
+
+---
+
+## 💭 느낀 점
+
+- `do-while`은 처음엔 어색했지만, 조건과 순서를 비교해보니 확실히 개념이 잡혔음  
+- `break`와 `continue`는 단순 반복을 넘어 **논리적인 흐름 제어**를 할 수 있다는 점에서 흥미로웠음  
+- 이론보다 실습을 통해 흐름을 직접 확인하니 확실하게 체화됨  
+- 반복문 로직이 훨씬 유연해졌다는 느낌을 받았고, 앞으로 다양한 입력 처리에 잘 쓸 수 있을 것 같음
+
+
