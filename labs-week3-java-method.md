@@ -219,3 +219,74 @@ public static void printLines(int count) {
 - `for` 반복문은 단순 반복 출력뿐만 아니라 로직 구성에 유용하게 사용된다는 점을 실습으로 체감
 - 메서드와 결합하니 코드 구조가 더 읽기 쉽고 재사용성이 높아져 개발자의 효율성이 올라가는 것을 느낌
 - 반복문이 추상적이라고 생각했었는데, 실제 예제를 통해 직관적으로 이해되었고 자신감이 붙기 시작함
+
+---
+
+# ✅ Day 18– Java 반복문 실전 패턴
+
+## 📘 1. 개념 정리
+
+- `for` 반복문은 문자열의 각 문자에 순차적으로 접근할 때 유용하다.
+- `.length()`는 문자열의 총 글자 수를 반환하며 반복 조건으로 활용된다.
+- `.charAt(i)`는 문자열에서 i번째 문자를 반환한다.
+- 반복문 안에서 `if (i == 0 || i == str.length() - 1)`로 특정 위치(첫/마지막)만 구분 가능하다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// CharPrinter.java
+for (int i = 0; i < name.length(); i++) {
+    System.out.println(name.charAt(i));
+}
+
+// NumberedChars.java
+for (int i = 0; i < word.length(); i++) {
+    System.out.println((i + 1) + ". " + word.charAt(i));
+}
+
+// FirstLastHighlighter.java
+for (int i = 0; i < word.length(); i++) {
+    if (i == 0 || i == word.length() - 1) {
+        System.out.println("*" + word.charAt(i) + "*");
+    } else {
+        System.out.println(word.charAt(i));
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day63-char-printer.png" width="500" height="300"/><br/>
+  > 문자열의 각 글자를 한 줄씩 출력한 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day63-numbered-chars.png" width="500" height="300"/><br/>
+  > 각 글자 앞에 번호를 붙여 출력한 화면
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day63-firstlast-highlight.png" width="500" height="300"/><br/>
+  > 첫 글자와 마지막 글자에 별(*)을 붙여 강조한 출력 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 문자열의 마지막 글자를 처리할 때 `word.length() - 1`을 정확히 기억해야 오류 방지 가능
+- `charAt()`은 인덱스가 유효한 범위를 벗어나면 `StringIndexOutOfBoundsException`이 발생하므로 `i < word.length()` 조건이 매우 중요함
+- 반복문과 조건문을 결합하여 위치 기반 출력 제어가 가능하다는 점이 핵심
+
+---
+
+## 💭 느낀 점
+
+- 문자열을 다루는 반복문을 직접 작성하면서 반복 구조가 실무에 어떻게 활용될 수 있는지 감이 잡힘
+- 특히 번호 매기기나 특정 문자 강조 같은 기능은 UI 개발에서도 자주 쓰일 수 있는 패턴이라 더 의미 있었음
+- 자바의 기본기인 `for + charAt + length` 조합이 얼마나 강력한지를 체감한 하루
