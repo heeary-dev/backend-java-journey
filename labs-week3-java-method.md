@@ -290,3 +290,70 @@ for (int i = 0; i < word.length(); i++) {
 - 문자열을 다루는 반복문을 직접 작성하면서 반복 구조가 실무에 어떻게 활용될 수 있는지 감이 잡힘
 - 특히 번호 매기기나 특정 문자 강조 같은 기능은 UI 개발에서도 자주 쓰일 수 있는 패턴이라 더 의미 있었음
 - 자바의 기본기인 `for + charAt + length` 조합이 얼마나 강력한지를 체감한 하루
+
+---
+
+# ✅ Day 19– Java 문자열 반복과 조건 처리
+
+## 📘 1. 개념 정리
+
+- `for` 반복문을 역방향으로 돌리면 문자열을 거꾸로 출력 가능
+- `charAt(i)`를 통해 각 문자를 추출하여 조건 분기 가능
+- 모음을 세거나 공백을 제거할 때는 `if` 조건문과 `+=` 연산 활용
+- 문자열 누적 시 성능은 낮지만, 기본 로직을 이해하는 데 적합
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// ReverseString.java
+for (int i = word.length() - 1; i >= 0; i--) {
+    System.out.print(word.charAt(i));
+}
+
+// CountVowels.java
+if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+    count++;
+}
+
+// RemoveSpaces.java
+if (ch != ' ') {
+    result += ch;
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day64-reverse-string.png" width="500" height="300/><br/>
+  > 문자열을 거꾸로 출력한 결과 ("banana" → "ananab")
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day64-count-vowels.png" width="500" /><br/>
+  > 입력한 문자열의 모음 개수를 출력한 결과 ("developer" → 4개)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day64-remove-spaces.png" width="500" /><br/>
+  > 공백을 제거한 문자열 출력 결과 ("hello world java" → "helloworldjava")
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 문자열 누적 시 `+=` 연산은 반복적으로 새로운 문자열을 생성함 → 성능은 떨어지나 초보자 로직 구현엔 적합
+- `charAt()` 사용 시 인덱스 초과 주의 (`length - 1`까지 접근 가능)
+- `for` 역순 반복은 시작 인덱스를 `length() - 1`로 정확히 설정해야 함
+
+---
+
+## 💭 느낀 점
+
+- 반복문과 조건문, 문자열 조작이 실전에 어떻게 쓰이는지 감이 잡힘
+- 단순 출력 이상으로 조건 분기를 통한 데이터 가공 능력이 향상됨
+- 점점 실무에서 사용될 만한 로직 구성 능력이 붙는 느낌이 들었음
