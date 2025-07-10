@@ -79,7 +79,7 @@ public class MethodPractice {
 
 ---
 
-# ✅ Day 16– Java 메서드 실전 적용과 구조 분리
+# ✅ Day 17– Java 메서드 실전 적용과 구조 분리
 
 ## 📘 1. 개념 정리
 
@@ -127,7 +127,7 @@ System.out.println(checkAge(25));  // Adult
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day61-conditional-return.png" width="500" height="80"/><br/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day61-conditional-return.png" width="500" /><br/>
   > 조건문과 return 조합에 따른 분기 실행 결과
 </p>
 
@@ -146,3 +146,76 @@ System.out.println(checkAge(25));  // Adult
 - 단순 출력이 아닌 **구조적 코드 분리**를 직접 해보면서, 메서드의 진짜 역할을 이해하게 되었다.
 - `void`와 `return` 차이를 체감하고, 매개변수를 활용한 코드 재사용에 대한 감각도 잡힘
 - 특히 return 조건 분기를 배우며 **유효성 검사, 예외 처리에 활용**될 수 있겠다는 인사이트를 얻음
+
+---
+
+# ✅ Day 16– Java for 반복문과 메서드 활용
+
+## 📘 1. 개념 정리
+
+- `for` 반복문은 정해진 횟수만큼 코드를 반복 실행할 때 사용하는 기본 반복문
+- 구조: `for (초기식; 조건식; 증감식) { ... }`
+- 반복문 안에서 메서드를 사용하면 반복 동작을 더 효율적으로 관리할 수 있음
+- 메서드에 매개변수를 전달해 반복 횟수나 메시지를 외부에서 제어 가능
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// LoopBasic.java
+for (int i = 0; i < 5; i++) {
+    System.out.println("안녕하세요!");
+}
+
+// RepeatMessage.java
+repeatHello(3); // 메서드 호출
+public static void repeatHello(int count) {
+    for (int i = 0; i < count; i++) {
+        System.out.println("Hello!");
+    }
+}
+
+// NumberedLines.java
+printLines(4); // 메서드 호출
+public static void printLines(int count) {
+    for (int i = 1; i <= count; i++) {
+        System.out.println(i + "번째 줄입니다.");
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day62-for-basic.png" width="500" /><br/>
+  > 기본 for문을 사용한 반복 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day62-for-method.png" width="500" /><br/>
+  > 메서드 내부에서 반복문을 실행하여 Hello 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day62-for-numbered.png" width="500" /><br/>
+  > 반복문에서 줄 번호를 붙여 출력하는 메서드 실행 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 반복문 종료 조건을 `i <= count`로 설정할 때 off-by-one 오류 주의 (원하는 횟수보다 1번 더 실행될 수 있음)
+- 반복문 내에서 출력할 때 `i`가 0부터 시작하면 사용자 입장에서 어색할 수 있음 → 1부터 시작하도록 조정
+- 메서드 재사용성과 테스트 편의성을 고려해, 반복 횟수는 하드코딩 대신 매개변수로 받도록 설계
+
+---
+
+## 💭 느낀 점
+
+- `for` 반복문은 단순 반복 출력뿐만 아니라 로직 구성에 유용하게 사용된다는 점을 실습으로 체감
+- 메서드와 결합하니 코드 구조가 더 읽기 쉽고 재사용성이 높아져 개발자의 효율성이 올라가는 것을 느낌
+- 반복문이 추상적이라고 생각했었는데, 실제 예제를 통해 직관적으로 이해되었고 자신감이 붙기 시작함
