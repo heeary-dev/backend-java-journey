@@ -357,3 +357,130 @@ if (ch != ' ') {
 - 반복문과 조건문, 문자열 조작이 실전에 어떻게 쓰이는지 감이 잡힘
 - 단순 출력 이상으로 조건 분기를 통한 데이터 가공 능력이 향상됨
 - 점점 실무에서 사용될 만한 로직 구성 능력이 붙는 느낌이 들었음
+
+---
+
+# ✅ Day 20– Java 자바 기초 총정리 & 미니 콘솔 앱 만들기
+
+## 📘 1. 개념 정리
+
+- `while` 반복문을 통해 메뉴를 계속 출력하고 사용자 선택을 기다림
+- `if / else if` 조건문을 통해 선택된 기능 분기 처리
+- `메서드 분리`를 통해 기능별 코드를 모듈화 (가독성과 유지보수 향상)
+- 문자열 처리 메서드:
+  - `reverseString(String)` : 문자열을 거꾸로 출력
+  - `countVowels(String)` : 모음(a, e, i, o, u) 개수 카운트
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+import java.util.Scanner;
+
+public class MenuApp {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice = 0;
+
+        while (choice != 4) {
+            printMenu(); // 메뉴 출력
+
+            System.out.print("메뉴 선택: ");
+            choice = sc.nextInt();
+            sc.nextLine(); // 개행 제거용
+
+            if (choice == 1) {
+                greet(); // 인사
+            } else if (choice == 2) {
+                System.out.print("문자열 입력: ");
+                String input = sc.nextLine();
+                System.out.println("역순 출력: " + reverseString(input));
+            } else if (choice == 3) {
+                System.out.print("문자열 입력: ");
+                String input = sc.nextLine();
+                System.out.println("모음 개수: " + countVowels(input));
+            } else if (choice == 4) {
+                System.out.println("프로그램 종료");
+            } else {
+                System.out.println("잘못된 입력입니다.");
+            }
+        }
+
+        sc.close();
+    }
+
+    public static void printMenu() {
+        System.out.println("\n--- 메뉴 ---");
+        System.out.println("1. 인사하기");
+        System.out.println("2. 문자열 뒤집기");
+        System.out.println("3. 모음 개수 세기");
+        System.out.println("4. 종료");
+    }
+
+    public static void greet() {
+        System.out.println("안녕하세요! 자바 학습을 응원합니다 :)");
+    }
+
+    public static String reverseString(String str) {
+        String reversed = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed += str.charAt(i);
+        }
+        return reversed;
+    }
+
+    public static int countVowels(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = Character.toLowerCase(str.charAt(i));
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+```
+
+---
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day65-greet.png" width="500" /><br/>
+  > 메뉴에서 1번 선택 시 인사 메시지 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day65-reverse.png" width="500" /><br/>
+  > 문자열을 입력받아 역순으로 출력한 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day65-count-vowels.png" width="500" /><br/>
+  > 입력 문자열의 모음 개수를 출력한 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day65-exit.png" width="500" /><br/>
+  > 4번 입력 시 프로그램 종료 메시지
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `Scanner.nextInt()` 후 `nextLine()`을 바로 사용할 경우 **입력 버퍼에 남은 개행 문자 처리 필수**  
+  → `sc.nextLine();` 호출로 개행 제거  
+- 문자열 누적 시 `+=`는 직관적이지만 반복이 많은 경우 비효율적 → 이후 `StringBuilder` 사용 예정  
+- `while`과 `if` 조건문의 조합으로 **단순한 메뉴 기반 앱도 직접 만들 수 있음**  
+- 기능별 메서드 분리는 코드 가독성과 유지보수에 매우 중요
+
+---
+
+## 💭 느낀 점
+
+- “메뉴 앱”을 만들며 자바 로직의 기본 뼈대를 이해할 수 있었음  
+- 단순히 문법을 외우는 것이 아니라, 흐름과 구조를 설계하는 것이 중요하다는 걸 체감  
+- 3주차 학습을 잘 마무리한 느낌이라 뿌듯하고, 다음 단계도 기대됨
