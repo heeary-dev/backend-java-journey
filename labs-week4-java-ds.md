@@ -327,3 +327,138 @@ public class Main2 {
 - 참조형 변수의 동작이 생각보다 직관적이지 않아서 직접 실습해보니 개념이 분명히 잡혔다.
 - 객체지향의 핵심인 “하나의 설계도로 여러 개의 실체를 만들 수 있다”는 구조가 머릿속에 이미지로 자리잡았다.
 
+---
+
+# ✅ Day 24– Java 생성자, this, 오버로딩
+
+## 📘 1. 개념 정리
+- 생성자(Constructor)는 객체가 생성될 때 자동으로 호출되어 객체의 초기 상태를 설정하는 특수한 메서드이다.
+- 생성자는 클래스 이름과 같고, 리턴 타입이 없으며, new 키워드와 함께 호출된다.
+- this 키워드는 현재 객체 자신을 가리키며, 매개변수와 인스턴스 변수명이 충돌할 때 구분하기 위해 사용한다.
+- 생성자는 오버로딩이 가능하여 다양한 초기화 방식 제공이 가능하다.
+- 생성자 내부에서 다른 생성자를 호출할 때는 `this()` 구문을 사용하며, 반드시 생성자 첫 줄에 작성해야 한다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// Car.java
+public class Car {
+    String color;
+    int speed;
+
+    public Car() {
+        color = "black";
+        speed = 0;
+    }
+
+    public Car(String c, int s) {
+        color = c;
+        speed = s;
+    }
+
+    public void display() {
+        System.out.println("색상: " + color + ", 속도: " + speed);
+    }
+}
+// Main1.java
+public class Main1 {
+    public static void main(String[] args) {
+        Car c1 = new Car();
+        Car c2 = new Car("red", 120);
+
+        c1.display();
+        c2.display();
+    }
+}
+```
+```java
+// Car2.java
+public class Car2 {
+    String color;
+    int speed;
+
+    public Car2(String color, int speed) {
+        this.color = color;
+        this.speed = speed;
+    }
+
+    public void display() {
+        System.out.println("색상: " + color + ", 속도: " + speed);
+    }
+}
+// Main2.java
+public class Main2 {
+    public static void main(String[] args) {
+        Car2 c = new Car2("blue", 150);
+        c.display();
+    }
+}
+```
+```java
+// Car3.java
+public class Car3 {
+    String color;
+    int speed;
+
+    public Car3() {
+        this("white", 0);
+    }
+
+    public Car3(String color, int speed) {
+        this.color = color;
+        this.speed = speed;
+    }
+
+    public void display() {
+        System.out.println("색상: " + color + ", 속도: " + speed);
+    }
+}
+// Main3.java
+public class Main3 {
+    public static void main(String[] args) {
+        Car3 defaultCar = new Car3();
+        Car3 customCar = new Car3("yellow", 200);
+
+        defaultCar.display();
+        customCar.display();
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day69-constructor-basic.png" width="450" height="80"/><br/>
+  > 기본 생성자와 매개변수 생성자를 사용한 출력 결과 (Main1.java)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day69-this-keyword.png" width="450" height="80"/><br/>
+  > this 키워드를 사용하여 변수 충돌을 해결한 출력 결과 (Main2.java)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day69-constructor-overloading.png" width="450" height="80"/><br/>
+  > 생성자 오버로딩을 통해 기본값/사용자지정값 모두 처리한 출력 결과 (Main3.java)
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+- 생성자 이름이 클래스명과 다르면 오류 발생 → 자동 호출되지 않음
+- 생성자 오버로딩 시 `this()`는 반드시 생성자 **첫 줄에만** 와야 함. 위치가 틀리면 컴파일 오류
+- this 키워드를 생략했을 때, 인스턴스 변수와 매개변수가 이름이 같으면 값이 제대로 할당되지 않음
+- 생성자 하나라도 만들면 기본 생성자는 자동 생성되지 않으므로 직접 명시 필요
+
+---
+
+## 💭 느낀 점
+- 객체를 만들면서 동시에 초기값을 지정하는 구조가 생각보다 깔끔하고 편하다는 걸 느꼈다
+- 생성자 오버로딩을 통해 다양한 상황에서 유연하게 객체를 만들 수 있다는 게 객체지향 설계의 유연함처럼 느껴졌다
+- this 키워드가 없으면 이름 충돌이 생길 수 있는데, 이걸 직접 실습으로 확인하니 개념이 머리에 박혔다
+- 설계도(클래스)를 제대로 사용하기 위해선 생성자의 활용이 매우 중요하다는 걸 실감했다
+
