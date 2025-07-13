@@ -243,4 +243,87 @@ public class ReverseWithCharArray {
 - char 배열로 뒤집는 로직도 단순하지만 직접 구현해보니 반복문 로직 감각이 더 잡혔다.
 - 이제 문자열도 읽기뿐 아니라 “수정”하는 감각이 생긴 느낌이다.
 
+---
+
+# ✅ Day 23– Java 클래스와 인스턴스
+
+## 📘 1. 개념 정리
+- 클래스(Class)는 객체(Object)를 만들기 위한 설계도이며, 변수와 메서드의 구조를 정의한다.
+- 인스턴스(Instance)는 클래스를 바탕으로 `new` 키워드를 통해 생성된 실제 객체이다.
+- 각 인스턴스는 자신만의 변수 값을 가지며, 클래스에서 정의한 변수 구조를 기반으로 생성된다.
+- 참조형 변수는 객체의 실제 값을 담는 것이 아니라, 메모리 주소를 담고 있는 변수이다.
+- 참조 변수 간 대입은 객체 자체를 복사하는 것이 아니라, 같은 객체를 가리키게 되는 것임에 주의해야 한다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// Car.java
+public class Car {
+    String color;
+    int speed;
+}
+```
+```java
+// Main1.java
+public class Main1 {
+    public static void main(String[] args) {
+        Car car1 = new Car();
+        car1.color = "red";
+        car1.speed = 100;
+
+        Car car2 = new Car();
+        car2.color = "blue";
+        car2.speed = 80;
+
+        System.out.println("car1 → " + car1.color + ", " + car1.speed);
+        System.out.println("car2 → " + car2.color + ", " + car2.speed);
+    }
+}
+```
+```java
+// Main2.java
+public class Main2 {
+    public static void main(String[] args) {
+        Car original = new Car();
+        original.color = "green";
+        original.speed = 120;
+
+        Car copy = original;
+        copy.speed = 200;
+
+        System.out.println("original.speed = " + original.speed);
+        System.out.println("copy.speed = " + copy.speed);
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day68-car-instances.png" width="450" height="80"/><br/>
+  > 서로 다른 인스턴스를 생성하고 각기 다른 속성을 할당한 출력 결과 (Main1.java)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day68-car-reference-copy.png" width="450" height="80"/><br/>
+  > 참조 변수를 복사하여 두 변수가 같은 객체를 가리키는 출력 결과 (Main2.java)
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+- `Car copy = original;`은 객체 복사가 아니라 **주소 복사**이므로 두 변수는 동일한 객체를 가리킴
+- 인스턴스를 새로 생성하지 않고 기존 객체를 복사하면 내부 상태 변경 시 함께 영향을 받음
+- 객체가 메모리에 생성되는 시점과 참조변수가 동작하는 구조를 눈으로 보며 이해할 수 있었음
+
+---
+
+## 💭 느낀 점
+- 클래스를 정의하는 것만으로는 아무 일도 일어나지 않으며, 인스턴스를 만들어야 진짜 데이터가 생긴다는 개념이 확실해졌다.
+- 참조형 변수의 동작이 생각보다 직관적이지 않아서 직접 실습해보니 개념이 분명히 잡혔다.
+- 객체지향의 핵심인 “하나의 설계도로 여러 개의 실체를 만들 수 있다”는 구조가 머릿속에 이미지로 자리잡았다.
 
