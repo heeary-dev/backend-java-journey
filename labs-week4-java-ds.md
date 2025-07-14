@@ -462,3 +462,96 @@ public class Main3 {
 - this 키워드가 없으면 이름 충돌이 생길 수 있는데, 이걸 직접 실습으로 확인하니 개념이 머리에 박혔다
 - 설계도(클래스)를 제대로 사용하기 위해선 생성자의 활용이 매우 중요하다는 걸 실감했다
 
+---
+
+# ✅ Day 25– Java 접근 제어자, 캡슐화, getter/setter
+
+## 📘 1. 개념 정리
+- 접근 제어자(Access Modifier)는 변수나 메서드의 접근 범위를 설정하는 키워드이며, 주요 제어자는 `public`, `private`, `protected`, `default`가 있다.
+- `private`은 클래스 내부에서만 접근 가능하며, 외부에서 직접 접근할 수 없다.
+- 캡슐화는 클래스 내부 데이터를 숨기고, 공개된 메서드를 통해서만 접근하도록 하는 객체지향의 핵심 설계 원칙이다.
+- 외부 접근을 막은 `private` 필드를 간접적으로 조작하기 위해 `getter`(읽기), `setter`(쓰기) 메서드를 만든다.
+- setter에 유효성 검사를 넣으면 잘못된 값 입력을 방지할 수 있어 보안성과 안정성이 높아진다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// User.java
+public class User {
+    private String name;
+    private int age;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setAge(int age) {
+        if (age >= 0 && age <= 120) {
+            this.age = age;
+        } else {
+            System.out.println("⚠️ 나이는 0~120 사이만 가능합니다.");
+        }
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+```
+```java
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        User u = new User();
+
+        // u.name = "희성"; ❌ private 접근 불가
+        u.setName("희성");
+        u.setAge(28);
+
+        System.out.println("이름: " + u.getName());
+        System.out.println("나이: " + u.getAge());
+
+        u.setAge(-10); // 유효성 검사 실패 시 경고 출력
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day70-getter-setter-normal.png" width="450" height="80"/><br/>
+  > getter/setter를 통한 정상적인 정보 접근 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day70-age-invalid-warning.png" width="450" height="80"/><br/>
+  > setAge()에서 유효하지 않은 값(-10) 입력 시 경고 메시지 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day70-private-error.png" width="450" height="80"/><br/>
+  > private 필드(name)에 직접 접근 시 컴파일 오류 발생
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+- `private` 필드에 외부에서 직접 접근하면 IDE가 에러를 발생시킴 (→ 보호 구조가 잘 작동함을 확인)
+- setter 내부에 유효성 검사 로직을 넣는 방식으로 잘못된 입력을 방지 가능
+- 유효하지 않은 나이 입력 시 출력되는 경고 메시지로, 사용자 피드백 처리 흐름 이해
+
+---
+
+## 💭 느낀 점
+- 이제 클래스 내부에서만 데이터를 안전하게 다루는 구조가 뭔지 감이 잡혔다
+- 직접 접근이 막히니까, "왜 getter/setter가 필요한가"가 확실하게 와닿았다
+- setter 안에서 조건 검사까지 하면 외부로부터 객체 상태를 보호할 수 있다는 점이 인상 깊었다
+
