@@ -629,4 +629,79 @@ public class Main {
 - 생성자에서 다른 객체를 전달받는 방식이 확장성과 코드 재사용에 유리하다는 점을 실감했다
 - 이런 포함 구조를 통해 하나의 클래스가 너무 많은 역할을 하지 않도록 분리하는 게 좋다는 객체지향 철학이 조금씩 익숙해졌다
 
+---
 
+# ✅ Day 27– Java 클래스 간 관계 - 객체를 메서드로 전달하기
+
+## 📘 1. 개념 정리
+
+- 메서드의 매개변수로 **다른 클래스의 객체를 전달**할 수 있다.
+- 이는 클래스 간 관계(예: has-a 관계)를 코드에서 연결해주는 대표적인 방법이다.
+- 전달받은 객체의 메서드나 필드를 해당 메서드 안에서 자유롭게 사용할 수 있다.
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// Address.java
+public class Address {
+    String city;
+    String street;
+
+    public Address(String city, String street) {
+        this.city = city;
+        this.street = street;
+    }
+
+    public void showAddress() {
+        System.out.println("City: " + city);
+        System.out.println("Street: " + street);
+    }
+}
+// Person.java
+public class Person {
+    String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public void showInfo(Address addr) {
+        System.out.println("Name: " + name);
+        addr.showAddress();
+    }
+}
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        Address a1 = new Address("Seoul", "Mapo-gu");
+        Person p1 = new Person("Heesung");
+
+        p1.showInfo(a1);
+    }
+}
+```
+
+---
+
+## 🖼️ 3. 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day72-showinfo-method-call.png" width="450" height="80"/><br/>
+  > showInfo 메서드를 호출하여 Person 이름과 Address 정보를 출력한 결과 화면
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 처음에는 `Address` 객체를 메서드 인자로 넘기는 방식이 어색했으나, `addr.showAddress()` 호출이 `Address` 클래스 내부 메서드를 실행한다는 구조를 이해하고 명확해짐.
+- 클래스 간 연결을 메서드 레벨에서 처리하는 구조는 향후 협업 로직이나 데이터 전달 구조의 핵심이 될 수 있음.
+
+---
+
+## 💭 느낀 점
+
+- `has-a` 관계를 단순한 필드 보유 외에도 **메서드 전달 방식**으로도 표현할 수 있다는 점이 새로웠다.
+- 객체 간 협력을 메서드 안에서 처리하니 더 유연한 구조가 가능해 보인다.
