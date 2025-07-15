@@ -555,3 +555,78 @@ public class Main {
 - 직접 접근이 막히니까, "왜 getter/setter가 필요한가"가 확실하게 와닿았다
 - setter 안에서 조건 검사까지 하면 외부로부터 객체 상태를 보호할 수 있다는 점이 인상 깊었다
 
+---
+
+# ✅ Day 26– Java 포함 관계(has-a)
+
+## 📘 1. 개념 정리
+- 클래스 간 포함 관계(has-a)는 한 클래스가 다른 클래스의 인스턴스를 멤버로 **포함**하는 구조다.
+- 현실 세계의 구조를 코드로 모델링할 때 자주 사용되며, 예: `사람 has-a 주소`, `주문 has-a 상품`.
+- 포함 관계는 독립적인 클래스를 조합하여 **책임 분리**와 **재사용성**을 높이는 데 효과적이다.
+- 포함된 객체는 생성자에서 전달받거나, 별도로 생성 후 참조시킬 수 있다.
+- 포함 객체의 필드나 메서드는 **점(.) 연산자**로 연결 접근이 가능하다 (`p.address.city` 등).
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// Address.java
+public class Address {
+    String city;
+    String street;
+
+    public Address(String city, String street) {
+        this.city = city;
+        this.street = street;
+    }
+
+    public void showAddress() {
+        System.out.println(city + " " + street);
+    }
+}
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        Address addr = new Address("서울", "강남대로");
+        Person p = new Person("희성", addr);
+
+        p.showInfo();
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day71-has-a-new-address.png" width="450" height="80"/><br/>
+  > Address 객체를 생성하고, Person 객체에 포함시켜 연결한 모습
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day71-has-a-showinfo.png" width="450" height="120"/><br/>
+  > 포함된 Address 객체의 정보를 Person 내부 메서드에서 출력한 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day71-has-a-access-inside.png" width="450" height="80"/><br/>
+  > p.address.city 와 같이 포함된 객체 내부 필드에 직접 접근하는 예시
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+- 포함 객체를 먼저 생성하고 생성자에 전달하지 않으면 `NullPointerException` 발생 가능
+- 포함 관계를 단순하게 이해하면 "클래스 안에 클래스를 넣는 구조"로 받아들이는 것이 직관적임
+- `address.showAddress()` 형태로 메서드까지 위임하는 구조가 중요함
+
+---
+
+## 💭 느낀 점
+- 객체를 객체 안에 넣는 구조가 처음엔 생소했지만, "사람은 주소를 가진다"는 개념으로 이해하니 직관적으로 와닿았다
+- 생성자에서 다른 객체를 전달받는 방식이 확장성과 코드 재사용에 유리하다는 점을 실감했다
+- 이런 포함 구조를 통해 하나의 클래스가 너무 많은 역할을 하지 않도록 분리하는 게 좋다는 객체지향 철학이 조금씩 익숙해졌다
+
+
