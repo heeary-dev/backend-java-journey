@@ -4,7 +4,7 @@
 
 ---
 
-# ✅ Day 21– Java 배열 심화 & 배열 응용
+# ✅ Day 21 – Java 배열 심화 & 배열 응용
 
 ## 📘 1. 개념 정리
 - 배열은 같은 타입의 데이터를 연속적으로 저장하는 참조형 자료구조이다.
@@ -112,7 +112,7 @@ public class ArrayPractice3 {
 
 ---
 
-# ✅ Day 22– Java 문자열 수정 & StringBuilder 활용
+# ✅ Day 22 – Java 문자열 수정 & StringBuilder 활용
 
 ## 📘 1. 개념 정리
 - `String`은 불변(immutable)이라 수정할 수 없고, 문자열을 바꿀 때마다 새 객체가 생성된다.
@@ -245,7 +245,7 @@ public class ReverseWithCharArray {
 
 ---
 
-# ✅ Day 23– Java 클래스와 인스턴스
+# ✅ Day 23 – Java 클래스와 인스턴스
 
 ## 📘 1. 개념 정리
 - 클래스(Class)는 객체(Object)를 만들기 위한 설계도이며, 변수와 메서드의 구조를 정의한다.
@@ -329,7 +329,7 @@ public class Main2 {
 
 ---
 
-# ✅ Day 24– Java 생성자, this, 오버로딩
+# ✅ Day 24 – Java 생성자, this, 오버로딩
 
 ## 📘 1. 개념 정리
 - 생성자(Constructor)는 객체가 생성될 때 자동으로 호출되어 객체의 초기 상태를 설정하는 특수한 메서드이다.
@@ -415,6 +415,8 @@ public class Car3 {
         System.out.println("색상: " + color + ", 속도: " + speed);
     }
 }
+```
+```java
 // Main3.java
 public class Main3 {
     public static void main(String[] args) {
@@ -464,7 +466,7 @@ public class Main3 {
 
 ---
 
-# ✅ Day 25– Java 접근 제어자, 캡슐화, getter/setter
+# ✅ Day 25 – Java 접근 제어자, 캡슐화, getter/setter
 
 ## 📘 1. 개념 정리
 - 접근 제어자(Access Modifier)는 변수나 메서드의 접근 범위를 설정하는 키워드이며, 주요 제어자는 `public`, `private`, `protected`, `default`가 있다.
@@ -557,7 +559,7 @@ public class Main {
 
 ---
 
-# ✅ Day 26– Java 포함 관계(has-a)
+# ✅ Day 26 – Java 포함 관계(has-a)
 
 ## 📘 1. 개념 정리
 - 클래스 간 포함 관계(has-a)는 한 클래스가 다른 클래스의 인스턴스를 멤버로 **포함**하는 구조다.
@@ -585,6 +587,8 @@ public class Address {
         System.out.println(city + " " + street);
     }
 }
+```
+```java
 // Main.java
 public class Main {
     public static void main(String[] args) {
@@ -631,7 +635,7 @@ public class Main {
 
 ---
 
-# ✅ Day 27– Java 클래스 간 관계 - 객체를 메서드로 전달하기
+# ✅ Day 27 – Java 클래스 간 관계 - 객체를 메서드로 전달하기
 
 ## 📘 1. 개념 정리
 
@@ -659,6 +663,8 @@ public class Address {
         System.out.println("Street: " + street);
     }
 }
+```
+```java
 // Person.java
 public class Person {
     String name;
@@ -672,6 +678,8 @@ public class Person {
         addr.showAddress();
     }
 }
+```
+```java
 // Main.java
 public class Main {
     public static void main(String[] args) {
@@ -705,3 +713,134 @@ public class Main {
 
 - `has-a` 관계를 단순한 필드 보유 외에도 **메서드 전달 방식**으로도 표현할 수 있다는 점이 새로웠다.
 - 객체 간 협력을 메서드 안에서 처리하니 더 유연한 구조가 가능해 보인다.
+
+---
+
+# ✅ Day 28 – Java static & final 키워드 정복
+
+## 📘 1. 개념 정리
+
+- `static`: 클래스 변수 또는 클래스 메서드 선언 시 사용하며, 객체 생성 없이 사용 가능하고 메모리를 공유함
+- `final`: 변수, 메서드, 클래스에 붙여서 더 이상 변경할 수 없도록 제한함
+- static 변수: 모든 객체가 공유하며 클래스명으로 접근 가능
+- static 메서드: 객체 없이 클래스명으로 호출 가능, 내부에서 this 사용 불가
+- final 변수: 한 번만 초기화 가능하며 수정 불가 (상수로 사용)
+- final 메서드: 자식 클래스에서 오버라이딩 불가능
+- final 클래스: 상속 불가능
+- static final: 상수 선언에 자주 사용되는 조합 (예: `PI`, `MAX_VALUE`)
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+public class StaticFinalDemo {
+
+    // static 변수: 모든 객체가 공유
+    static String schoolName = "Green High School";
+
+    // final 변수: 한 번만 초기화 가능
+    final int studentId;
+
+    // 인스턴스 변수
+    String name;
+
+    // static final 변수: 상수
+    static final double PI = 3.14159;
+
+    // 생성자
+    public StaticFinalDemo(int studentId, String name) {
+        this.studentId = studentId;  // final 변수는 생성자에서만 초기화 가능
+        this.name = name;
+    }
+
+    // 인스턴스 메서드
+    public void printStudentInfo() {
+        System.out.println("[" + name + "] 학생은 " + schoolName + "에 재학 중입니다.");
+    }
+
+    // static 메서드
+    public static void changeSchoolName(String newName) {
+        schoolName = newName;
+        System.out.println("학교명이 " + schoolName + "(으)로 변경되었습니다.");
+    }
+
+    // final 메서드
+    public final void cannotOverride() {
+        System.out.println("이 메서드는 오버라이딩할 수 없습니다.");
+    }
+}
+```
+```java
+// final 메서드 오버라이드 시도 (컴파일 에러 발생)
+public class ChildDemo extends StaticFinalDemo {
+
+    public ChildDemo(int id, String name) {
+        super(id, name);
+    }
+
+    // @Override
+    // public void cannotOverride() {
+    //     System.out.println("오버라이딩 시도 중...");
+    // }
+}
+```
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        // static 메서드 호출
+        StaticFinalDemo.changeSchoolName("Blue High School");
+
+        // 객체 생성
+        StaticFinalDemo s1 = new StaticFinalDemo(101, "Tom");
+        StaticFinalDemo s2 = new StaticFinalDemo(102, "Jerry");
+
+        // 인스턴스 메서드 호출
+        s1.printStudentInfo();
+        s2.printStudentInfo();
+
+        // static final 상수 출력
+        System.out.println("원주율 상수: " + StaticFinalDemo.PI);
+    }
+}
+```
+
+---
+
+<p align="center"> <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day73-static-change.png" width="450" height="80"/><br/> > static 메서드로 학교명이 변경되는 출력 확인 </p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day73-static-share.png" width="450" height="80"/><br/>
+  > 두 객체가 동일한 schoolName(static 변수)을 공유하는 출력 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day73-final-const.png" width="450" height="80"/><br/>
+  > static final 상수 PI 출력 확인
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day73-final-method-error.png" width="450" height="150"/><br/>
+  > final 메서드를 오버라이딩하려 할 때 컴파일 에러 발생 (주석 해제 시)
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `static` 메서드 안에서는 `this` 키워드 사용 불가 → 객체 정보가 없기 때문
+- `final` 변수는 반드시 **생성자 또는 선언 시점에 초기화**되어야 함
+- `final` 메서드 오버라이드 시 컴파일 에러 발생 → 실습을 통해 정확히 확인함
+- `static final` 상수는 대문자와 언더스코어로 이름 짓는 것이 자바 컨벤션임
+
+---
+
+## 💭 느낀 점
+
+- static과 final은 문법 자체는 간단하지만, 개념적으로는 **메모리 구조와 객체 지향 설계 원칙을 함께 이해해야** 제대로 쓰일 수 있다는 걸 느꼈다.
+- static은 공유, final은 고정이라는 원칙을 명확히 체득했으며, 특히 static 메서드 내부에서 this가 막히는 구조를 직접 실습하면서 머리에 각인되었다.
+- 실습을 통해 변수와 메서드의 소속(클래스 vs 인스턴스)을 명확히 구분할 수 있게 되었다.
+
+
+
