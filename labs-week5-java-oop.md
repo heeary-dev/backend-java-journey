@@ -299,3 +299,100 @@ public class Main {
 - 오버라이딩 메서드가 자식 기준으로 실행되는 구조를 직접 보면서 동적 바인딩의 핵심을 이해하게 됨  
 - 다운캐스팅은 반드시 instanceof로 확인 후 진행해야 한다는 점이 명확히 각인되었고,  
   앞으로 다형성을 활용한 코드 설계 시 안전성과 구조적 유연성 모두를 고려할 수 있을 것 같음
+
+---
+
+# ✅ Day 32 – Java 다형성 배열 & 다운캐스팅
+
+## 📘 1. 개념 정리
+
+- 다형성 배열: 부모 타입 배열에 다양한 자식 객체를 담아 처리하는 구조
+- 오버라이딩: 업캐스팅 상태에서도 자식의 메서드가 실행되도록 하는 핵심 기능
+- instanceof: 객체가 특정 클래스 타입인지 확인하는 키워드
+- 다운캐스팅: 부모 타입 객체를 자식 타입으로 강제 형변환하여 고유 기능 사용
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+class Person {
+    String name;
+
+    Person(String name) {
+        this.name = name;
+    }
+
+    void introduce() {
+        System.out.println("안녕하세요, 저는 " + name + "입니다.");
+    }
+}
+```
+```java
+class Student extends Person {
+    String major;
+
+    Student(String name, String major) {
+        super(name);
+        this.name = name;
+        this.major = major;
+    }
+
+    @Override
+    void introduce() {
+        System.out.println("안녕하세요, 저는 " + name + "이고 전공은 " + major + "입니다.");
+    }
+
+    void study() {
+        System.out.println(name + "은(는) 열심히 공부 중입니다!");
+    }
+}
+```
+```java
+public class Main {
+    public static void main(String[] args) {
+        Person[] people = new Person[3];
+        people[0] = new Person("영희");
+        people[1] = new Student("철수", "컴퓨터공학");
+        people[2] = new Student("민수", "전자공학");
+
+        for (Person p : people) {
+            p.introduce(); // 오버라이딩된 메서드 실행
+        }
+
+        System.out.println("--------------------");
+
+        for (Person p : people) {
+            if (p instanceof Student) {
+                Student s = (Student) p; // 다운캐스팅
+                s.study(); // 자식 메서드 실행
+            }
+        }
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day77-polymorphism-array.png" width="500" height="150"/><br/>
+  > 다형성 배열에서 오버라이딩 메서드 실행 및 instanceof로 자식 고유 메서드 호출 성공
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 다형성 배열을 활용하면 다양한 자식 객체를 반복문으로 일괄 처리할 수 있어 코드가 훨씬 유연해짐
+- 업캐스팅 상태에서는 자식 메서드 접근 불가 → instanceof로 타입 확인 후 다운캐스팅 필요
+- instanceof 없이 다운캐스팅하면 `ClassCastException` 발생 가능 → 반드시 사전 확인이 중요
+
+---
+
+## 💭 느낀 점
+
+- 배열을 활용한 다형성 구조가 실무 코드와 가장 가까운 형태라는 느낌을 받음
+- 오버라이딩 메서드가 자식 기준으로 자동 실행된다는 점이 실제 사용에 매우 유용함을 체감
+- 부모 타입 배열 + instanceof + 다운캐스팅 조합은 실용적이며, 객체지향의 유연함을 직접 체험한 하루였음
