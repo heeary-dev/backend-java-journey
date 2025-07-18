@@ -185,3 +185,117 @@ public class Main {
 - 오버라이딩은 단순한 재정의가 아니라, **기존 기능을 확장하거나 맞춤형으로 바꿔주는 강력한 도구**라는 것을 실감함
 - super 키워드를 통해 부모 기능을 포함할 수 있다는 점에서 객체지향의 계층적 설계 철학이 느껴졌음
 - 앞으로 상속을 활용할 때, **기본 동작은 유지하면서 필요한 부분만 덧붙이는 방식**으로 활용해볼 수 있을 것 같음
+
+---
+
+# ✅ Day 31 – Java 다형성 (Polymorphism)
+
+## 📘 1. 개념 정리
+
+- 다형성(Polymorphism): 부모 타입 하나로 여러 자식 객체를 다룰 수 있는 객체지향의 핵심 개념
+- 업캐스팅: 자식 객체를 부모 타입 변수에 담는 것 (자동, 안전)
+- 오버라이딩된 메서드는 업캐스팅 상태에서도 실제 인스턴스 기준으로 실행됨
+- 다운캐스팅: 부모 타입 참조를 자식 타입으로 강제 형변환하여 고유 기능을 사용하는 것 (명시적, 위험 가능성 있음)
+- instanceof: 객체의 실제 타입을 검사하는 키워드로, 다운캐스팅 전에 안전성 확인에 사용
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// 부모 클래스
+public class Person {
+    String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public void introduce() {
+        System.out.println("저는 사람입니다. 이름은 " + name + "입니다.");
+    }
+}
+```
+```java
+// 자식 클래스
+public class Student extends Person {
+    String major;
+
+    public Student(String name, String major) {
+        super(name);
+        this.major = major;
+    }
+
+    @Override
+    public void introduce() {
+        System.out.println("저는 학생입니다. 이름은 " + name + "이고, 전공은 " + major + "입니다.");
+    }
+
+    public void study() {
+        System.out.println(name + "은(는) 열심히 공부하고 있습니다.");
+    }
+}
+```
+```java
+// 실행 클래스
+public class Main {
+    public static void main(String[] args) {
+
+        Student s1 = new Student("희성", "컴퓨터공학");
+        s1.introduce();
+        s1.study();
+
+        Person p1 = new Student("철수", "전자공학");
+        p1.introduce();
+
+        // p1.study(); // 컴파일 에러 발생
+
+        if (p1 instanceof Student) {
+            Student s2 = (Student) p1;
+            s2.study();
+        }
+    }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day76-direct-student.png" width="450" height="80"/><br/>
+  > Student 인스턴스를 직접 생성하여 introduce()와 study()를 실행한 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day76-upcasting-call.png" width="450" height="80"/><br/>
+  > 업캐스팅된 상태에서도 오버라이딩된 introduce()가 자식 클래스 기준으로 실행됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day76-downcast-error.png" width="450" height="80"/><br/>
+  > 업캐스팅된 객체에서 자식 고유 메서드 study() 호출 시 컴파일 에러 발생
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day76-downcasting-success.png" width="450" height="80"/><br/>
+  > instanceof로 실제 타입 확인 후 다운캐스팅하여 study() 호출 성공
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 업캐스팅은 자식 객체를 부모 타입에 담는 구조로, 컴파일러가 자동 처리하며 안전함  
+- 업캐스팅 상태에서는 자식 고유 기능(예: study()) 호출 불가 → 컴파일 에러 발생 확인  
+- 다운캐스팅을 통해 자식 타입으로 되돌릴 수 있으나, **객체의 진짜 타입이 맞을 때만 가능**  
+- 이를 확인하기 위해 instanceof로 타입 검사 후 다운캐스팅 수행 → 안정성 확보
+
+---
+
+## 💭 느낀 점
+
+- 업캐스팅은 객체를 상위 타입으로 추상화하여 관리하는 강력한 방법이라는 걸 체감함  
+- 오버라이딩 메서드가 자식 기준으로 실행되는 구조를 직접 보면서 동적 바인딩의 핵심을 이해하게 됨  
+- 다운캐스팅은 반드시 instanceof로 확인 후 진행해야 한다는 점이 명확히 각인되었고,  
+  앞으로 다형성을 활용한 코드 설계 시 안전성과 구조적 유연성 모두를 고려할 수 있을 것 같음
