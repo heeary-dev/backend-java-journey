@@ -396,3 +396,95 @@ public class Main {
 - 배열을 활용한 다형성 구조가 실무 코드와 가장 가까운 형태라는 느낌을 받음
 - 오버라이딩 메서드가 자식 기준으로 자동 실행된다는 점이 실제 사용에 매우 유용함을 체감
 - 부모 타입 배열 + instanceof + 다운캐스팅 조합은 실용적이며, 객체지향의 유연함을 직접 체험한 하루였음
+
+---
+
+# ✅ Day 33 – Java enum 열거형 완전 이해
+
+## 📘 1. 개념 정리
+
+- `enum`은 고정된 상수들을 하나의 타입으로 선언할 수 있는 특별한 클래스
+- 내부적으로 각 상수는 **미리 생성된 인스턴스**이며, new 없이 바로 사용 가능
+- enum도 클래스처럼 **필드, 생성자, 메서드 포함 가능**
+- `switch`, `values()`, `ordinal()`, `name()` 등 다양한 메서드 제공
+- 실무에서 **상태값, 타입 구분, 조건 분기** 등에서 매우 자주 활용됨
+
+---
+
+## 🧪 2. 실습 명령어
+
+```java
+// 과일 열거형 정의
+enum Fruit {
+    APPLE("빨강"),
+    BANANA("노랑"),
+    GRAPE("보라");
+
+    private final String color;
+
+    Fruit(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+}
+```
+```java
+// 실행 클래스
+public class Main {
+    public static void main(String[] args) {
+        for (Fruit f : Fruit.values()) {
+            System.out.println(f.name() + "의 색깔은 " + f.getColor() + "입니다.");
+        }
+
+        System.out.println("-----------------");
+
+        Fruit selected = Fruit.BANANA;
+
+        switch (selected) {
+            case APPLE:
+                System.out.println("사과는 새콤달콤!");
+                break;
+            case BANANA:
+                System.out.println("바나나는 든든해요!");
+                break;
+            case GRAPE:
+                System.out.println("포도는 달콤해요!");
+                break;
+        }
+    }
+}
+```
+
+---
+
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day78-enum-values.png" width="500" height="120"/><br/>
+  > Fruit.values()로 모든 열거형 상수와 색상을 반복 출력한 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/backend-java-journey/main/images/day78-enum-switch.png" width="500" height="80"/><br/>
+  > 선택된 열거형 상수(Fruit.BANANA)에 따라 switch문 분기 처리된 출력 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- enum 생성자에 접근제한자를 지정하지 않으면 기본적으로 private이 적용됨 → 외부에서 new로 생성 불가능  
+- switch 문에서 enum 값을 비교할 땐 `enum 상수명`만으로도 매칭됨 → `Fruit.` 없이도 분기 가능  
+- enum 내부에 필드와 메서드를 정의하면 일반 클래스처럼 강력한 구조 설계가 가능함
+
+---
+
+## 💭 느낀 점
+
+- enum은 단순 상수 묶음이 아니라 클래스처럼 객체 지향적으로 설계된 구조라는 점이 인상 깊었음  
+- 생성자와 필드, 메서드를 포함할 수 있다는 점에서 실무에서 상태나 타입을 정의할 때 훨씬 유용할 것으로 보임  
+- switch와 함께 사용할 때 코드가 간결하고 명확해지는 경험을 하며 enum의 실용성을 직접 체감했음
